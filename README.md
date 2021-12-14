@@ -16,8 +16,6 @@ StackBlitz available @ [https://stackblitz.com/edit/ng-partial-loader](https://s
 
 ## Installation
 
-### ngx-markdown
-
 To add ng-partial-loader library to your `package.json` use the following command.
 
 ```bash
@@ -34,13 +32,12 @@ After installation completed, define `NgPartialLoaderModule` to your module scop
 
 ```typescript
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import { NgPartialLoaderModule } from "ng-partial-loader";
 import { AppComponent } from "./app.component";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, NgPartialLoaderModule],
+  imports: [NgPartialLoaderModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
