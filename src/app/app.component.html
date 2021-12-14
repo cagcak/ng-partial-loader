@@ -1,0 +1,45 @@
+<header class="header">Header</header>
+<div class="holygrail-body">
+  <div class="content">
+    <p>
+      <span>{{ title }} app is running!</span>
+    </p>
+    <h1>Employees</h1>
+    <ng-container *ngIf="employees$ | async as employees">
+      <ul [ngPartialLoader]="!employees?.length">
+        <li *ngFor="let employee of employees">name: {{ employee?.name }}</li>
+      </ul>
+    </ng-container>
+
+    <h1>places</h1>
+    <ng-container *ngIf="places$ | async as places">
+      <ul
+        [ngPartialLoader]="!places?.length"
+        [loaderOptions]="{
+          path: '/assets/',
+          customLoader: 'bullets.gif'
+        }"
+      >
+        <li *ngFor="let place of places">name: {{ place?.name }}</li>
+      </ul>
+    </ng-container>
+
+    <h1>departments</h1>
+    <ng-container *ngIf="departments$ | async as departments">
+      <ul
+        [ngPartialLoader]="!departments?.length"
+        [loaderOptions]="{
+          path: '/assets/',
+          customLoader: 'pulse.svg'
+        }"
+      >
+        <li *ngFor="let department of departments">
+          name: {{ department?.name }}
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+  <div class="nav"></div>
+  <div class="aside">Aside</div>
+</div>
+<footer class="footer">Footer</footer>
