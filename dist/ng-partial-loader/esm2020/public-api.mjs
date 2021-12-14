@@ -1,0 +1,6 @@
+/*
+ * Public API Surface of ng-partial-loader
+ */
+export * from './lib/ng-partial-loader.module';
+export * from './lib/ng-partial-loader.directive';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25nLXBhcnRpYWwtbG9hZGVyL3NyYy9wdWJsaWMtYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsY0FBYyxnQ0FBZ0MsQ0FBQztBQUMvQyxjQUFjLG1DQUFtQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIFB1YmxpYyBBUEkgU3VyZmFjZSBvZiBuZy1wYXJ0aWFsLWxvYWRlclxuICovXG5cbmV4cG9ydCAqIGZyb20gJy4vbGliL25nLXBhcnRpYWwtbG9hZGVyLm1vZHVsZSc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZy1wYXJ0aWFsLWxvYWRlci5kaXJlY3RpdmUnO1xuIl19

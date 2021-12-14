@@ -16,7 +16,7 @@
     "build:minor:lib": "npm run bump:minor:lib && ng build ng-partial-loader",
     "build:major:lib": "npm run bump:major:lib && ng build ng-partial-loader",
     "npm:pack": "cd dist/ng-partial-loader && npm pack",
-    "release": "npm run npm:pack && cd dist/ng-partial-loader && pwd && npm publish",
+    "release": "npm run npm:pack && cd dist/ng-partial-loader && npm publish",
     "package:patch:lib": "npm run build:patch:lib && npm run release",
     "package:minor:lib": "npm run build:minor:lib && npm run release",
     "package:major:lib": "npm run build:major:lib && npm run release"
