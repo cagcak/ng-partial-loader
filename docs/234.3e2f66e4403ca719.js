@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpartial_loader=self.webpackChunkpartial_loader||[]).push([[234],{234:a=>{a.exports=JSON.parse('[{"id":1,"name":"\u0130stanbul"},{"id":2,"name":"Ankara"},{"id":3,"name":"\u0130zmir"}]')}}]);

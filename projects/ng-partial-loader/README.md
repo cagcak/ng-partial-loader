@@ -88,7 +88,7 @@ isHttpRequestResolved: boolean = false;
 
 ### Options
 
-ng-partial-loader has an `Options` named model
+ng-partial-loader has an `NgPartialLoaderOptions` named model
 
 - `path`: loader graph or vector path with forward slashes, ex: '/resources/images/loaders/'
 - `fallback`: fallbak loader file with extension, ex: 'loading.png'
@@ -110,6 +110,10 @@ Below demonstrates how to pass options
 >
   ...
 </div>
+```
+
+```html
+<div [ngPartialLoader]="isHttpRequestResolved" [loaderOptions]="{ loader: 'ripple' }">...</div>
 ```
 
 ## Contribution

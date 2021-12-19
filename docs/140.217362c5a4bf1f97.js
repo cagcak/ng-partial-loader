@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpartial_loader=self.webpackChunkpartial_loader||[]).push([[140],{140:e=>{e.exports=JSON.parse('[{"id":1,"name":"Development"},{"id":2,"name":"Product"},{"id":3,"name":"Growth"},{"id":4,"name":"Marketing"}]')}}]);

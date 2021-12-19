@@ -9,12 +9,12 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-interface Options {
+export type NgPartialLoaderOptions = Partial<{
   path: string;
-  fallback?: string;
-  customLoader?: string;
-  minHeight?: string;
-  loader?:
+  fallback: string;
+  customLoader: string;
+  minHeight: string;
+  loader:
     | 'blocks'
     | 'dual-ring'
     | 'pulse'
@@ -25,7 +25,7 @@ interface Options {
     | 'ellipsis'
     | 'ripple'
     | 'spinner';
-}
+}>;
 
 @Directive({
   selector: '[ngPartialLoader]',
@@ -38,13 +38,13 @@ export class NgPartialLoaderDirective implements OnInit, OnChanges {
   ngPartialLoader = false;
 
   @Input()
-  loaderOptions: Options;
+  loaderOptions: NgPartialLoaderOptions;
 
   uuid: string;
 
   private get utils() {
     const options = this.loaderOptions;
-    const defaults: Options = {
+    const defaults: NgPartialLoaderOptions = {
       path: 'assets',
       loader: 'cube',
       minHeight: '40px',
