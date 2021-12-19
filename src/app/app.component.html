@@ -16,7 +16,7 @@
       <ul
         [ngPartialLoader]="!(places$ | async)?.length"
         [loaderOptions]="{
-          path: 'projects/ng-partial-loader/src/assets',
+          path: 'assets',
           customLoader: 'bullets.gif'
         }"
       >
@@ -29,7 +29,7 @@
       <ul
         [ngPartialLoader]="!(departments$ | async)?.length"
         [loaderOptions]="{
-          path: '/assets/',
+          path: 'assets',
           customLoader: 'pulse.svg'
         }"
       >

@@ -29,6 +29,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/_config.yml",
               {
                 "glob": "**/*",
                 "input": "projects/ng-partial-loader/src/assets",
