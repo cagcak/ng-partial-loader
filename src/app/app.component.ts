@@ -1,10 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { mapTo, Observable, take, timer } from 'rxjs';
-
-interface KeyVal {
-  id: number;
-  name: string;
-}
+import { delay } from 'rxjs';
+import { Employee, KeyVal } from './app.model';
+import { RestService } from './rest.service';
 
 @Component({
   selector: 'app-root',
@@ -14,33 +11,11 @@ interface KeyVal {
 export class AppComponent {
   title = 'partial-loader';
 
-  departments$: Observable<KeyVal[]> = timer(1000).pipe(
-    mapTo([
-      { id: 1, name: 'Development' },
-      { id: 2, name: 'Product' },
-      { id: 3, name: 'Growth' },
-      { id: 4, name: 'Marketing' },
-    ]),
-    take(1)
-  );
+  constructor(private restService: RestService) {}
 
-  employees$: Observable<KeyVal[]> = timer(2500).pipe(
-    mapTo([
-      { id: 978543, name: 'Tonyakuk' },
-      { id: 243534, name: 'Tuğrul' },
-      { id: 982324, name: 'Çağrı' },
-      { id: 645664, name: 'Alparslan' },
-      { id: 312398, name: 'Atilla' },
-    ]),
-    take(1)
-  );
+  departments$ = this.restService.getDepartments<KeyVal[]>().pipe(delay(1000));
 
-  places$: Observable<KeyVal[]> = timer(3000).pipe(
-    mapTo([
-      { id: 1, name: 'İstanbul' },
-      { id: 2, name: 'Ankara' },
-      { id: 3, name: 'İzmir' },
-    ]),
-    take(1)
-  );
+  employees$ = this.restService.getEmployees<Employee[]>().pipe(delay(3000));
+
+  places$ = this.restService.getPlaces<KeyVal[]>().pipe(delay(5000));
 }

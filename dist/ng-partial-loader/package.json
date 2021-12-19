@@ -1,6 +1,28 @@
 {
   "name": "ng-partial-loader",
-  "version": "0.0.2",
+  "version": "1.1.0",
+  "description": "Angular library that fills unresolved async content by simple partial loader",
+  "license": "MIT",
+  "author": {
+    "email": "cagcak@outlook.com",
+    "name": "Çağrı"
+  },
+  "homepage": "https://github.com/cagcak/ng-partial-loader#readme",
+  "bugs": {
+    "url": "https://github.com/cagcak/ng-partial-loader/issues",
+    "email": "cagcak@outlook.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cagcak/ng-partial-loader.git"
+  },
+  "keywords": [
+    "angular loader",
+    "angular spinner",
+    "loader",
+    "spinner",
+    "partial loader"
+  ],
   "peerDependencies": {
     "@angular/common": "^13.0.0",
     "@angular/core": "^13.0.0"

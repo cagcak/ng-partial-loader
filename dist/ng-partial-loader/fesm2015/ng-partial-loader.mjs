@@ -12,14 +12,15 @@ class NgPartialLoaderDirective {
     get utils() {
         const options = this.loaderOptions;
         const defaults = {
-            path: './assets/',
+            path: 'assets',
             loader: 'cube',
+            minHeight: '40px',
         };
         return {
-            options: options || defaults,
+            options: Object.assign(Object.assign({}, defaults), (options && Object.assign({}, options))),
             loader() {
                 const { path, loader, customLoader } = this.options;
-                return `${path}${customLoader || loader + '.svg'}`;
+                return `${path}/${customLoader || loader + '.svg'}`;
             },
             uuidv4() {
                 return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (replacer) => {
@@ -49,8 +50,9 @@ class NgPartialLoaderDirective {
         if ((_a = this.utils.options) === null || _a === void 0 ? void 0 : _a.fallback) {
             this.renderer.setStyle(loader, 'background', `url(${this.utils.options.fallback}) no-repeat center`);
         }
-        this.targetEl.nativeElement.style.minHeight = '40px';
-        this.renderer.appendChild(this.targetEl.nativeElement, loader);
+        const element = this.targetEl.nativeElement;
+        element.style.minHeight = this.utils.options.minHeight;
+        this.renderer.appendChild(element, loader);
     }
     ngOnChanges(simpleChanges) {
         var _a;

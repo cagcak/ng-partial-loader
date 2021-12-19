@@ -13,6 +13,7 @@ interface Options {
   path: string;
   fallback?: string;
   customLoader?: string;
+  minHeight?: string;
   loader?:
     | 'blocks'
     | 'dual-ring'
@@ -44,25 +45,23 @@ export class NgPartialLoaderDirective implements OnInit, OnChanges {
   private get utils() {
     const options = this.loaderOptions;
     const defaults: Options = {
-      path: './assets/',
+      path: 'assets',
       loader: 'cube',
+      minHeight: '40px',
     };
 
     return {
-      options: options || defaults,
+      options: { ...defaults, ...(options && { ...options }) },
       loader() {
         const { path, loader, customLoader } = this.options;
-        return `${path}${customLoader || loader + '.svg'}`;
+        return `${path}/${customLoader || loader + '.svg'}`;
       },
       uuidv4() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-          /[xy]/g,
-          (replacer) => {
-            const random = (Math.random() * 16) | 0;
-            const uuid = replacer === 'x' ? random : (random & 0x3) | 0x8;
-            return uuid.toString(16);
-          }
-        );
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (replacer) => {
+          const random = (Math.random() * 16) | 0;
+          const uuid = replacer === 'x' ? random : (random & 0x3) | 0x8;
+          return uuid.toString(16);
+        });
       },
     };
   }
@@ -75,11 +74,7 @@ export class NgPartialLoaderDirective implements OnInit, OnChanges {
     const loader = this.renderer.createElement('div') as HTMLDivElement;
 
     this.renderer.setAttribute(loader, 'id', this.uuid);
-    this.renderer.setStyle(
-      loader,
-      'display',
-      this.ngPartialLoader ? 'flex' : 'none'
-    );
+    this.renderer.setStyle(loader, 'display', this.ngPartialLoader ? 'flex' : 'none');
     this.renderer.setStyle(loader, 'position', 'absolute');
     this.renderer.setStyle(loader, 'justify-content', 'center');
     this.renderer.setStyle(loader, 'align-items', 'center');
@@ -87,25 +82,18 @@ export class NgPartialLoaderDirective implements OnInit, OnChanges {
     this.renderer.setStyle(loader, 'height', '100%');
     this.renderer.setStyle(loader, 'max-height', '40px');
     this.renderer.setStyle(loader, 'top', '0');
-    this.renderer.setStyle(
-      loader,
-      'background-image',
-      `url("${this.utils.loader()}")`
-    );
+    this.renderer.setStyle(loader, 'background-image', `url("${this.utils.loader()}")`);
     this.renderer.setStyle(loader, 'background-size', 'contain');
     this.renderer.setStyle(loader, 'background-repeat', 'no-repeat');
     this.renderer.setStyle(loader, 'background-position', 'center');
 
     if (this.utils.options?.fallback) {
-      this.renderer.setStyle(
-        loader,
-        'background',
-        `url(${this.utils.options.fallback}) no-repeat center`
-      );
+      this.renderer.setStyle(loader, 'background', `url(${this.utils.options.fallback}) no-repeat center`);
     }
 
-    (this.targetEl.nativeElement as HTMLElement).style.minHeight = '40px';
-    this.renderer.appendChild(this.targetEl.nativeElement, loader);
+    const element = this.targetEl.nativeElement as HTMLElement;
+    element.style.minHeight = this.utils.options.minHeight as string;
+    this.renderer.appendChild(element, loader);
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
@@ -113,11 +101,7 @@ export class NgPartialLoaderDirective implements OnInit, OnChanges {
       const container = this.targetEl.nativeElement as HTMLDivElement;
       const div = container.querySelector(`#${this.uuid}`);
       if (div) {
-        this.renderer.setStyle(
-          div,
-          'display',
-          this.ngPartialLoader ? 'flex' : 'none'
-        );
+        this.renderer.setStyle(div, 'display', this.ngPartialLoader ? 'flex' : 'none');
       }
     }
   }

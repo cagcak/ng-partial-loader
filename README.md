@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="NG Partial Loader Plugin" src="https://github.com/cagcak/ng-partial-loader/blob/main/projects/ng-partial-loader/src/assets/pulse.svg">
+  <img height="40" alt="NG Partial Loader Plugin" src="https://github.com/cagcak/ng-partial-loader/blob/main/projects/ng-partial-loader/src/assets/pulse.svg">
 </p>
 
 # ng-partial-loader
@@ -31,9 +31,9 @@ yarn add ng-partial-loader
 After installation completed, define `NgPartialLoaderModule` to your module scope to use
 
 ```typescript
-import { NgModule } from "@angular/core";
-import { NgPartialLoaderModule } from "ng-partial-loader";
-import { AppComponent } from "./app.component";
+import { NgModule } from '@angular/core';
+import { NgPartialLoaderModule } from 'ng-partial-loader';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +41,31 @@ import { AppComponent } from "./app.component";
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+```
+
+then in `angular.json` define default loaders asset location to style bundle if it will be used
+
+```json
+...
+{
+  ...
+"architect": {
+  "build": {
+    ...
+    "options": {
+      ...
+      "assets": [
+        ...
+        {
+          "glob": "**/*",
+          "input": "node_modules/ng-partial-loader/src/assets",
+          "output": "./assets"
+        }
+      ],
+    }
+    ...
+  }
+}
 ```
 
 ## Usage
@@ -63,26 +88,13 @@ isHttpRequestResolved: boolean = false;
 
 ### Options
 
-ng-partial-loader has an `Options` named model as below
+ng-partial-loader has an `Options` named model
 
-```typescript
-interface Options {
-  path: string;
-  fallback?: string;
-  customLoader?: string;
-  loader?:
-    | "blocks"
-    | "dual-ring"
-    | "pulse"
-    | "rolling"
-    | "spin"
-    | "cube"
-    | "double-ring"
-    | "ellipsis"
-    | "ripple"
-    | "spinner";
-}
-```
+- `path`: loader graph or vector path with forward slashes, ex: '/resources/images/loaders/'
+- `fallback`: fallbak loader file with extension, ex: 'loading.png'
+- `customLoader`: application specific loader, ex: 'loader.svg'
+- `minHeight`: minimum height for loader scope
+- `loader`: library based loader option, ex: 'blocks' | 'dual-ring' | ... etc
 
 > If there is not any option defined, the directive will have default animated **cube** loader.
 
@@ -92,9 +104,9 @@ Below demonstrates how to pass options
 <div
   [ngPartialLoader]="isHttpRequestResolved"
   [loaderOptions]="{
-        path: '/assets/my-images/',
-        customLoader: 'bullets.gif'
-    }"
+    path: '/assets/my-images/',
+    customLoader: 'bullets.gif'
+  }"
 >
   ...
 </div>

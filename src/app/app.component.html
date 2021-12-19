@@ -4,40 +4,38 @@
     <p>
       <span>{{ title }} app is running!</span>
     </p>
-    <h1>Employees</h1>
-    <ng-container *ngIf="employees$ | async as employees">
-      <ul [ngPartialLoader]="!employees?.length">
-        <li *ngFor="let employee of employees">name: {{ employee?.name }}</li>
+    <div class="content-box">
+      <h1>Employees</h1>
+      <ul [ngPartialLoader]="!(employees$ | async)?.length">
+        <li *ngFor="let employee of employees$ | async">name: {{ employee?.firstName }}</li>
       </ul>
-    </ng-container>
+    </div>
 
-    <h1>places</h1>
-    <ng-container *ngIf="places$ | async as places">
+    <div class="content-box">
+      <h1>places</h1>
       <ul
-        [ngPartialLoader]="!places?.length"
+        [ngPartialLoader]="!(places$ | async)?.length"
         [loaderOptions]="{
-          path: '/assets/',
+          path: 'projects/ng-partial-loader/src/assets',
           customLoader: 'bullets.gif'
         }"
       >
-        <li *ngFor="let place of places">name: {{ place?.name }}</li>
+        <li *ngFor="let place of places$ | async">name: {{ place?.name }}</li>
       </ul>
-    </ng-container>
+    </div>
 
-    <h1>departments</h1>
-    <ng-container *ngIf="departments$ | async as departments">
+    <div class="content-box">
+      <h1>departments</h1>
       <ul
-        [ngPartialLoader]="!departments?.length"
+        [ngPartialLoader]="!(departments$ | async)?.length"
         [loaderOptions]="{
           path: '/assets/',
           customLoader: 'pulse.svg'
         }"
       >
-        <li *ngFor="let department of departments">
-          name: {{ department?.name }}
-        </li>
+        <li *ngFor="let department of departments$ | async">name: {{ department?.name }}</li>
       </ul>
-    </ng-container>
+    </div>
   </div>
   <div class="nav"></div>
   <div class="aside">Aside</div>

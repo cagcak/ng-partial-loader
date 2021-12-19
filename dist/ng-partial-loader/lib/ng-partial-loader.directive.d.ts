@@ -4,6 +4,7 @@ interface Options {
     path: string;
     fallback?: string;
     customLoader?: string;
+    minHeight?: string;
     loader?: 'blocks' | 'dual-ring' | 'pulse' | 'rolling' | 'spin' | 'cube' | 'double-ring' | 'ellipsis' | 'ripple' | 'spinner';
 }
 export declare class NgPartialLoaderDirective implements OnInit, OnChanges {
